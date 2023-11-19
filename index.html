@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Launch Ceremony</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet"> <!-- Google Font -->
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-image: url('image1.png'); /* Initial background image */
+            background-size: cover;
+            text-align: center;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .button {
+            background: linear-gradient(45deg, #2196f3, #f06292); /* Blue and pink gradient */
+            color: white;
+            padding: 25px 50px;
+            font-size: 22px;
+            border: none;
+            border-radius: 35px;
+            box-shadow: 0 6px #999;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background: linear-gradient(45deg, #1e88e5, #ec407a); /* Darker shade for hover */
+            box-shadow: 0 4px #888;
+        }
+
+        .button:active {
+            transform: translateY(4px);
+        }
+
+        #celebrationMessage {
+            display: none; /* Initially hidden */
+            font-size: 6em;
+            font-family: 'Montserrat', sans-serif; /* Stylish Font */
+            color: rgb(231, 229, 124); /* Solid color for text */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .wave-animate span {
+            display: inline-block;
+            animation: wave 2s infinite;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        /* Keyframes for the waving letters animation */
+        @keyframes wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+    </style>
+</head>
+<body>
+    <button class="button" id="launchButton">Launch MedBook</button>
+    <div id="celebrationMessage" class="wave-animate">
+        <!-- Each letter is wrapped in a span for individual animation -->
+        <span style="--i:1">M</span><span style="--i:2">e</span><span style="--i:3">d</span>
+        <span style="--i:4">B</span><span style="--i:5">o</span><span style="--i:6">o</span><span style="--i:7">k</span>
+        <span style="--i:8">   </span><span style="--i:9">i</span><span style="--i:10">s</span>
+        <span style="--i:11">   </span><span style="--i:12">o</span><span style="--i:13">n</span>
+        <span style="--i:14">l</span><span style="--i:15">i</span><span style="--i:16">v</span><span style="--i:17">e</span>
+    </div>
+
+    <script>
+        var launchButton = document.getElementById('launchButton');
+        var celebrationMessage = document.getElementById('celebrationMessage');
+        var countdownImages = ['number5.png', 'number4.png', 'number3.png', 'number2.png', 'number1.png'];
+        var countdownTime = 5; // 5 seconds countdown
+
+        launchButton.addEventListener("click", function() {
+            launchButton.style.display = 'none';
+            document.body.style.backgroundImage = `url('${countdownImages[0]}')`; // Start countdown with number 5
+            startCountdown();
+        });
+
+        function startCountdown() {
+            var interval = setInterval(function() {
+                countdownTime--;
+                if (countdownTime > 0) {
+                    document.body.style.backgroundImage = `url('${countdownImages[5 - countdownTime]}')`;
+                } else {
+                    clearInterval(interval);
+                    document.body.style.backgroundImage = "url('image2.png')";
+                    celebrationMessage.style.display = 'flex';
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
